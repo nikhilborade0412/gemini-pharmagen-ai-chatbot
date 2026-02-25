@@ -6,7 +6,7 @@ PharmaGen AI is a domain-specific, production-grade GenAI chatbot designed to as
 It leverages Google's Gemini 2.5 model and is built with a modular architecture suitable for real-world deployment.
 
 ---
-
+ 
 ## 🚀 Project Overview
 
 PharmaGen AI simulates a real-world Generative AI production system with:

@@ -138,7 +138,6 @@ pip install streamlit google-genai python-dotenv
 
 ### 4️⃣ Configure Environment Variables
 
-Create `.env` file in root directory:
 
 ```
 GEMINI_API_KEY=your_api_key_here

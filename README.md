@@ -143,8 +143,6 @@ pip install streamlit google-genai python-dotenv
 GEMINI_API_KEY=your_api_key_here
 ```
 
-⚠️ Do not commit `.env` file to GitHub.
-
 ---
 
 ## ▶️ Run Application

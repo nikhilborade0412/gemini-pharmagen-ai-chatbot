@@ -7,7 +7,7 @@ It leverages Google's Gemini 2.5 model and is built with a modular architecture 
 
 ---
 
-## Live Demo of ChatBot
+## 🔗Live Demo of ChatBot
 [Live Demo](http://35.154.207.125:8501/)
 
 ---

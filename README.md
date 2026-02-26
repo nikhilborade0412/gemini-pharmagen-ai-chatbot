@@ -6,6 +6,9 @@ PharmaGen AI is a domain-specific, production-grade GenAI chatbot designed to as
 It leverages Google's Gemini 2.5 model and is built with a modular architecture suitable for real-world deployment.
 
 ---
+
+## Live Demo of ChatBot
+[Live Demo](http://35.154.207.125:8501/)
  
 ## 🚀 Project Overview
 

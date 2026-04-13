@@ -19,23 +19,33 @@ class GeminiClient:
 
     def generate_response(self, prompt: str, history: list):
 
-        full_prompt = ""
+    full_prompt = ""
 
-        for msg in history:
-            role = msg["role"]
-            text = msg["parts"][0]
+    for msg in history:
+        role = msg["role"]
+        text = msg["parts"][0]
 
-            if role == "user":
-                full_prompt += f"User: {text}\n"
-            else:
-                full_prompt += f"Assistant: {text}\n"
+        if role == "user":
+            full_prompt += f"User: {text}\n"
+        else:
+            full_prompt += f"Assistant: {text}\n"
 
-        full_prompt += f"User: {prompt}\nAssistant:"
+    full_prompt += f"User: {prompt}\nAssistant:"
 
-        # 🚨 NO try-except here
+    # 🔥 Try primary model
+    try:
         response = self.client.models.generate_content(
-            model="models/gemini-1.5-flash",  # ✅ more stable
+            model="models/gemini-2.5-flash",
             contents=full_prompt
         )
+        return response.text
 
+    except Exception as e:
+        print("Primary model failed:", e)
+
+        # 🔁 Fallback model
+        response = self.client.models.generate_content(
+            model="models/gemini-1.5-flash",
+            contents=full_prompt
+        )
         return response.text

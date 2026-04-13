@@ -1,41 +1,35 @@
 import os
 from dotenv import load_dotenv
-from groq import Groq
+from google import genai
 
 
-class GeminiClient:   # keep same name to avoid changing app.py
+class GeminiClient:
+    """
+    Handles communication with Gemini API using official SDK.
+    """
 
     def __init__(self):
         load_dotenv()
 
-        api_key = os.getenv("GROQ_API_KEY")
+        api_key = os.getenv("GEMINI_API_KEY")
         if not api_key:
-            raise ValueError("GROQ_API_KEY not found in environment variables.")
+            raise ValueError("GEMINI_API_KEY not found in environment variables.")
 
-        self.client = Groq(api_key=api_key)
+        # Force stable API version
+        self.client = genai.Client(
+            api_key=api_key,
+            http_options={"api_version": "v1"}
+        )
 
     def generate_response(self, prompt: str, history: list):
 
-        messages = []
+        try:
+            response = self.client.models.generate_content(
+                model="models/gemini-2.5-flash",
+                contents=prompt
+            )
 
-        # Add history
-        for msg in history:
-            role = msg["role"]
-            content = msg["parts"][0]
+            return response.text
 
-            if role == "user":
-                messages.append({"role": "user", "content": content})
-            else:
-                messages.append({"role": "assistant", "content": content})
-
-        # Add current prompt
-        messages.append({"role": "user", "content": prompt})
-
-        # 🔥 Call Groq API
-        response = self.client.chat.completions.create(
-            model="llama3-70b-8192",   # BEST model
-            messages=messages,
-            temperature=0.7
-        )
-
-        return response.choices[0].message.content
+        except Exception as e:
+            return f"Error communicating with Gemini API: {str(e)}"

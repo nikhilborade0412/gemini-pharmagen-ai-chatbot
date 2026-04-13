@@ -23,13 +23,35 @@ class GeminiClient:
 
     def generate_response(self, prompt: str, history: list):
 
+    full_prompt = ""
+
+    for msg in history:
+        role = msg["role"]
+        text = msg["parts"][0]
+
+        if role == "user":
+            full_prompt += f"User: {text}\n"
+        else:
+            full_prompt += f"Assistant: {text}\n"
+
+    full_prompt += f"User: {prompt}\nAssistant:"
+
+    # 🔥 Try models one by one (NO FAILURE SYSTEM)
+    models = [
+        "models/gemini-2.5-flash",   # fast but unstable
+        "models/gemini-1.5-flash",   # stable
+        "models/gemini-pro"          # backup
+    ]
+
+    for model_name in models:
         try:
             response = self.client.models.generate_content(
-                model="models/gemini-2.5-flash",
-                contents=prompt
+                model=model_name,
+                contents=full_prompt
             )
-
             return response.text
-
         except Exception as e:
-            return f"Error communicating with Gemini API: {str(e)}"
+            print(f"{model_name} failed:", e)
+
+    # If all models fail
+    return "⚠️ All AI models are currently busy. Please try again in a few seconds."

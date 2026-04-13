@@ -1,24 +1,74 @@
 import streamlit as st
+import time
 from chatbot.gemini_client import GeminiClient
 from chatbot.memory_manager import MemoryManager
 from chatbot.prompt_builder import build_prompt
 
 
-
-## Page Configuration ## 
+# ==============================
+# Page Config
+# ==============================
 
 st.set_page_config(
     page_title="PharmaGen AI",
     page_icon="💊",
-    layout="centered"
+    layout="wide"
 )
 
-st.title("💊 PharmaGen AI")
-st.subheader("Pharmaceutical Industry Assistant")
+# ==============================
+# Custom CSS (🔥 PRO UI)
+# ==============================
+
+st.markdown("""
+<style>
+.chat-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2E86C1;
+}
+.sub-title {
+    color: gray;
+    margin-bottom: 20px;
+}
+.footer {
+    text-align: center;
+    color: gray;
+    font-size: 13px;
+    margin-top: 30px;
+}
+</style>
+""", unsafe_allow_html=True)
 
 
+# ==============================
+# Header
+# ==============================
 
-## Initialize Session State ## 
+st.markdown('<div class="chat-title">💊 PharmaGen AI</div>', unsafe_allow_html=True)
+st.markdown('<div class="sub-title">Your Intelligent Pharmaceutical Assistant</div>', unsafe_allow_html=True)
+
+
+# ==============================
+# Sidebar (🔥 INDUSTRY FEATURE)
+# ==============================
+
+with st.sidebar:
+    st.header("⚙️ Controls")
+
+    if st.button("🗑️ Clear Conversation"):
+        st.session_state.memory.clear_memory()
+        st.rerun()
+
+    st.markdown("---")
+    st.info("💡 Tip: Ask detailed pharma questions for better results")
+
+    st.markdown("---")
+    st.caption("👨‍💻 Built by Nikhil Borade")
+
+
+# ==============================
+# Session State
+# ==============================
 
 if "memory" not in st.session_state:
     st.session_state.memory = MemoryManager()
@@ -27,29 +77,52 @@ if "client" not in st.session_state:
     st.session_state.client = GeminiClient()
 
 
+# ==============================
+# Chat Display
+# ==============================
 
-## Chat Input ## 
+for msg in st.session_state.memory.get_history():
+    with st.chat_message(msg["role"]):
+        st.write(msg["parts"][0])
 
-user_input = st.chat_input("Ask a pharmaceutical industry question...")
+
+# ==============================
+# Chat Input
+# ==============================
+
+user_input = st.chat_input("💬 Ask about medicines, pharma industry, drugs...")
 
 if user_input:
     memory = st.session_state.memory
     client = st.session_state.client
 
-    # Add user message
+    # Show user message instantly
+    with st.chat_message("user"):
+        st.write(user_input)
+
     memory.add_user_message(user_input)
 
-    # Build prompt
     prompt = build_prompt(user_input)
 
-    # Generate response
-    response = client.generate_response(prompt, memory.get_history())
+    # ==============================
+    # AI Response with Spinner (🔥 UX)
+    # ==============================
 
-    # Add bot response
+    with st.chat_message("assistant"):
+        with st.spinner("💡 Thinking..."):
+            time.sleep(0.5)  # smooth UX feel
+            response = client.generate_response(prompt, memory.get_history())
+
+        st.write(response)
+
     memory.add_bot_message(response)
 
 
+# ==============================
+# Footer
+# ==============================
 
+<<<<<<< HEAD
 ## Display Chat History ##
 
 for msg in st.session_state.memory.get_history():
@@ -71,3 +144,13 @@ if st.button("Clear Conversation"):
 
 ## Footer ## 
 st.markdown('<div class="footer">PharmaGen AI • Production-Ready GenAI System • Powered by Nikhil Borade</div>', unsafe_allow_html=True)    
+=======
+st.markdown("""
+<hr>
+<div class="footer">
+💊 PharmaGen AI • Production-Ready GenAI System  
+🚀 Built with Streamlit + Gemini API  
+👨‍💻 Nikhil Borade
+</div>
+""", unsafe_allow_html=True)
+>>>>>>> f92b8c9 (Initial Commit)

@@ -1,9 +1,9 @@
+# 💊 PharmaGen AI
 
-# 💊 PharmaGen AI  
 ### Production-Ready Pharmaceutical Industry Assistant (Powered by Nikhil Borade)
 
-PharmaGen AI is a domain-specific, production-grade GenAI chatbot designed to assist users with pharmaceutical industry knowledge.  
-It leverages Google's Gemini 2.5 model and is built with a modular architecture suitable for real-world deployment.
+PharmaGen AI is a **domain-specific, production-grade Generative AI chatbot** designed to assist users with pharmaceutical industry knowledge.
+It leverages **Google Gemini models** and follows a **modular, scalable architecture** suitable for real-world deployment.
 
 ---
 
@@ -14,62 +14,81 @@ It leverages Google's Gemini 2.5 model and is built with a modular architecture 
  
 ## 🚀 Project Overview
 
-PharmaGen AI simulates a real-world Generative AI production system with:
+PharmaGen AI simulates a **real-world GenAI production system**, integrating:
 
-- ✅ Proper Gemini API integration
-- ✅ Multi-turn conversation memory
-- ✅ Advanced prompt engineering
-- ✅ Streamlit interactive UI
-- ✅ Secure API key handling
-- ✅ Clean modular code structure
-- ✅ Deployment-ready architecture
+* ✅ Google Gemini API (latest supported models)
+* ✅ Multi-turn conversational memory
+* ✅ Advanced prompt engineering
+* ✅ Streamlit-based interactive UI
+* ✅ Secure environment variable management
+* ✅ Modular and maintainable architecture
+* ✅ Cloud deployment readiness (AWS EC2, etc.)
 
-This chatbot is restricted strictly to pharmaceutical industry topics.
+This chatbot is **strictly restricted to pharmaceutical domain queries**, ensuring focused and relevant responses.
 
 ---
 
 ## 🏗 System Architecture
 
 ```
-
 User (Browser)
-↓
+   ↓
 Streamlit UI
-↓
+   ↓
 Application Layer (Python Backend)
-↓
+   ↓
 Conversation Memory Manager
-↓
+   ↓
 Prompt Engineering Layer
-↓
-Gemini 2.5 Flash Model
-↓
-Response Output
-
+   ↓
+Gemini Model (Flash / Latest Supported)
+   ↓
+AI Response
 ```
 
 ---
 
-## 🧠 Features
+## 🧠 Core Features
 
 ### 🔹 Domain-Specific Intelligence
-PharmaGen AI only answers questions related to:
-- Drug Development Lifecycle
-- GMP & GLP Guidelines
-- Pharmaceutical Manufacturing
-- QA / QC Processes
-- Regulatory Authorities (FDA, WHO, CDSCO, EMA)
-- Pharmacopeia Standards
 
-### 🔹 Multi-Turn Memory
-Maintains session-based chat history for contextual responses.
+PharmaGen AI is trained to respond only within pharmaceutical topics such as:
 
-### 🔹 Secure API Integration
-Uses `.env` file for environment-based API key management.
+* Drug Development Lifecycle
+* GMP (Good Manufacturing Practices)
+* GLP (Good Laboratory Practices)
+* Pharmaceutical Manufacturing
+* Quality Assurance (QA) & Quality Control (QC)
+* Regulatory Authorities (FDA, WHO, CDSCO, EMA)
+* Pharmacopeia Standards
 
-### 🔹 Production-Level Structure
+---
+
+### 🔹 Multi-Turn Conversation Memory
+
+Maintains session-based context for more accurate and meaningful responses.
+
+---
+
+### 🔹 Intelligent Model Handling
+
+* Uses **available Gemini models dynamically**
+* Includes **retry mechanism**
+* Handles API failures gracefully
+
+---
+
+### 🔹 Secure API Management
+
+* API keys stored securely using `.env`
+* No hardcoded credentials
+* Safe for deployment
+
+---
+
+### 🔹 Production-Level Code Structure
+
 ```
-
 pharmagen-ai/
 │
 ├── app.py
@@ -78,21 +97,21 @@ pharmagen-ai/
 │   ├── memory_manager.py
 │   ├── prompt_builder.py
 │
+├── test.py
 ├── .env
 ├── requirements.txt
 └── README.md
-
-````
+```
 
 ---
 
 ## ⚙️ Tech Stack
 
-- Python 3.12
-- Streamlit
-- Google GenAI SDK
-- Gemini 2.5 Flash Model
-- dotenv (Environment variable management)
+* Python 3.10+
+* Streamlit
+* Google GenAI SDK
+* Gemini Models (Flash / Latest Supported)
+* python-dotenv
 
 ---
 
@@ -103,7 +122,9 @@ pharmagen-ai/
 ```bash
 git clone <your-repo-url>
 cd pharmagen-ai
-````
+```
+
+---
 
 ### 2️⃣ Create Virtual Environment
 
@@ -113,13 +134,13 @@ python -m venv myenv
 
 Activate:
 
-Windows:
+**Windows**
 
 ```bash
 myenv\Scripts\activate
 ```
 
-Mac/Linux:
+**Mac/Linux**
 
 ```bash
 source myenv/bin/activate
@@ -133,7 +154,7 @@ source myenv/bin/activate
 pip install -r requirements.txt
 ```
 
-If no requirements file:
+If missing:
 
 ```bash
 pip install streamlit google-genai python-dotenv
@@ -143,11 +164,20 @@ pip install streamlit google-genai python-dotenv
 
 ### 4️⃣ Configure Environment Variables
 
+<<<<<<< HEAD
+=======
+Create `.env` file:
+>>>>>>> f92b8c9 (Initial Commit)
 
 ```
 GEMINI_API_KEY=your_api_key_here
 ```
 
+<<<<<<< HEAD
+=======
+⚠️ Never commit `.env` to GitHub.
+
+>>>>>>> f92b8c9 (Initial Commit)
 ---
 
 ## ▶️ Run Application
@@ -156,7 +186,7 @@ GEMINI_API_KEY=your_api_key_here
 streamlit run app.py
 ```
 
-Application runs on:
+Access:
 
 ```
 http://localhost:8501
@@ -168,30 +198,31 @@ http://localhost:8501
 
 * What is GMP in pharmaceutical manufacturing?
 * Explain drug development lifecycle.
-* What is the role of FDA in drug approval?
-* What is pharmacopeia?
+* What are the functions of FDA?
+* What is Vitamin B12 used for?
+* Explain QA vs QC in pharma.
 
 ---
 
 ## ⚠️ Limitations
 
-* Does NOT provide medical diagnosis.
-* Does NOT provide treatment advice.
-* Restricted to pharmaceutical industry knowledge only.
+* ❌ No medical diagnosis
+* ❌ No treatment recommendations
+* ✅ Restricted to pharmaceutical industry knowledge only
 
 ---
 
-## ☁️ Deployment (AWS EC2 Ready)
+## ☁️ Deployment (Cloud Ready)
 
-PharmaGen AI is fully deployable on:
+Supported platforms:
 
 * AWS EC2
 * Render
 * Railway
 * Azure VM
-* GCP VM
+* Google Cloud VM
 
-Run using:
+Run on server:
 
 ```bash
 streamlit run app.py --server.port 8501 --server.address 0.0.0.0
@@ -199,37 +230,47 @@ streamlit run app.py --server.port 8501 --server.address 0.0.0.0
 
 ---
 
-## 🛡 Security Considerations
+## 🛡 Security Practices
 
-* API keys stored in `.env`
+* Environment-based API key management
 * `.gitignore` configured
-* No hardcoded credentials
-* Domain-restricted prompt enforcement
+* No exposed credentials
+* Domain-restricted prompts
 
 ---
 
-## 📌 Future Improvements
+## 📌 Future Enhancements
 
-* Database-backed persistent memory
-* User authentication
-* Role-based access
-* Logging & monitoring
-* CI/CD integration
-* Custom frontend framework
-* Docker containerization
+* 🔹 Database-backed persistent memory
+* 🔹 User authentication system
+* 🔹 Role-based access control
+* 🔹 Logging & monitoring (observability)
+* 🔹 CI/CD pipeline integration
+* 🔹 Docker containerization
+* 🔹 Custom frontend (React/Next.js)
 
 ---
 
 ## 👨‍💻 Author
 
-Nikhil Borade
+**Nikhil Borade**
 Computer Science Graduate | AI & Data Science Enthusiast
 
 ---
 
 ## 📄 License
 
-This project is developed for educational and demonstration purposes.
-
+This project is intended for **educational and demonstration purposes**.
 
 ---
+
+## ⭐ Final Note
+
+PharmaGen AI demonstrates **real-world GenAI system design**, including:
+
+* API integration
+* Error handling
+* Prompt engineering
+* Scalable architecture
+
+🚀 *A strong portfolio project for AI/ML/Data Science roles.*

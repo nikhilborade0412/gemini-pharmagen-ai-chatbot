@@ -249,15 +249,4 @@ Computer Science Graduate | AI & Data Science Enthusiast
 
 This project is intended for **educational and demonstration purposes**.
 
----
 
-## ⭐ Final Note
-
-PharmaGen AI demonstrates **real-world GenAI system design**, including:
-
-* API integration
-* Error handling
-* Prompt engineering
-* Scalable architecture
-
-🚀 *A strong portfolio project for AI/ML/Data Science roles.*

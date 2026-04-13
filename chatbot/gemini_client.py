@@ -4,29 +4,21 @@ from google import genai
 
 
 class GeminiClient:
-    """
-    Handles communication with Gemini API using official SDK.
-    """
 
     def __init__(self):
         load_dotenv()
 
-        api_key = os.getenv("GOOGLE_API_KEY")  # ✅ consistent with .env
+        api_key = os.getenv("GOOGLE_API_KEY")
         if not api_key:
             raise ValueError("GOOGLE_API_KEY not found in environment variables.")
 
-        # Initialize client
         self.client = genai.Client(
             api_key=api_key,
             http_options={"api_version": "v1"}
         )
 
     def generate_response(self, prompt: str, history: list):
-        """
-        Generate response from Gemini
-        """
 
-        # Combine history + prompt (better context)
         full_prompt = ""
 
         for msg in history:
@@ -40,8 +32,9 @@ class GeminiClient:
 
         full_prompt += f"User: {prompt}\nAssistant:"
 
+        # 🚨 NO try-except here
         response = self.client.models.generate_content(
-            model="models/gemini-2.5-flash",
+            model="models/gemini-1.5-flash",  # ✅ more stable
             contents=full_prompt
         )
 

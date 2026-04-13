@@ -1,5 +1,5 @@
 # 💊 PharmaGen AI
-
+![PharmaGen AI](image/pharmagen-ai.png)
 ### Production-Ready Pharmaceutical Industry Assistant (Powered by Nikhil Borade)
 
 PharmaGen AI is a **domain-specific, production-grade Generative AI chatbot** designed to assist users with pharmaceutical industry knowledge.
@@ -165,24 +165,6 @@ If missing:
 pip install streamlit google-genai python-dotenv
 ```
 
----
-
-### 4️⃣ Configure Environment Variables
-
-<<<<<<< HEAD
-=======
-Create `.env` file:
->>>>>>> f92b8c9 (Initial Commit)
-
-```
-GEMINI_API_KEY=your_api_key_here
-```
-
-<<<<<<< HEAD
-=======
-⚠️ Never commit `.env` to GitHub.
-
->>>>>>> f92b8c9 (Initial Commit)
 ---
 
 ## ▶️ Run Application

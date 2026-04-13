@@ -150,7 +150,7 @@ st.markdown("""
 <div class="footer">
 💊 PharmaGen AI • Production-Ready GenAI System  
 🚀 Built with Streamlit + Gemini API  
-👨‍💻 Nikhil Borade
+👨‍💻 Nikhil Borade  
 </div>
 """, unsafe_allow_html=True)
 >>>>>>> f92b8c9 (Initial Commit)

@@ -72,23 +72,30 @@ if user_input:
     with st.chat_message("assistant"):
         with st.spinner("💡 Thinking..."):
             retries = 3
-            response = None
+           import time
 
-            for i in range(retries):
-                try:
-                    response = client.generate_response(prompt, memory.get_history())
-                    break
-                except Exception as e:
-                    if "503" in str(e) or "UNAVAILABLE" in str(e):
-                        time.sleep(2)
-                    else:
-                        response = "⚠️ Unexpected error occurred. Please try again."
-                        break
+with st.chat_message("assistant"):
+    with st.spinner("💡 Thinking..."):
 
-            if response is None:
-                response = "⚠️ Gemini is busy right now. Please try again in a few seconds."
+        retries = 3
+        response = None
+        last_error = ""
 
-        st.write(response)
+        for i in range(retries):
+            try:
+                response = client.generate_response(prompt, memory.get_history())
+                break
+
+            except Exception as e:
+                last_error = str(e)
+
+                # Retry for ANY Gemini issue
+                time.sleep(2)
+
+        if response is None:
+            response = f"⚠️ Gemini is busy or unavailable.\n\nError: {last_error}"
+    
+    st.write(response)
 
     # Store bot response
     memory.add_bot_message(response)

@@ -56,7 +56,8 @@ with st.sidebar:
     st.header("⚙️ Controls")
 
     if st.button("🗑️ Clear Conversation"):
-        st.session_state.memory.clear_memory()
+        if "memory" in st.session_state:
+            st.session_state.memory.clear_memory()
         st.rerun()
 
     st.markdown("---")
@@ -122,29 +123,6 @@ if user_input:
 # Footer
 # ==============================
 
-<<<<<<< HEAD
-## Display Chat History ##
-
-for msg in st.session_state.memory.get_history():
-    if msg["role"] == "user":
-        with st.chat_message("user"):
-            st.write(msg["parts"][0])
-    else:
-        with st.chat_message("assistant"):
-            st.write(msg["parts"][0])
-
-
-
-## Clear Chat Button ##
-
-if st.button("Clear Conversation"):
-    st.session_state.memory.clear_memory()
-    st.rerun()
-
-
-## Footer ## 
-st.markdown('<div class="footer">PharmaGen AI • Production-Ready GenAI System • Powered by Nikhil Borade</div>', unsafe_allow_html=True)    
-=======
 st.markdown("""
 <hr>
 <div class="footer">
@@ -153,4 +131,3 @@ st.markdown("""
 👨‍💻 Nikhil Borade  
 </div>
 """, unsafe_allow_html=True)
->>>>>>> f92b8c9 (Initial Commit)

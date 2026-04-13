@@ -72,7 +72,6 @@ if user_input:
     with st.chat_message("assistant"):
         with st.spinner("💡 Thinking..."):
             retries = 3
-           import time
 
 with st.chat_message("assistant"):
     with st.spinner("💡 Thinking..."):

@@ -8,8 +8,13 @@ It leverages **Google Gemini models** and follows a **modular, scalable architec
 ---
 
 ## 🔗Live Demo of ChatBot
-[Live Demo](http://35.154.207.125:8501/)
+[Live Demo](http://54.83.238.82:8501/)
 
+---
+
+## 🚀 Application Preview
+
+![PharmaGen AI](image/img.jpg)
 ---
  
 ## 🚀 Project Overview

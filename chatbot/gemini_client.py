@@ -11,25 +11,38 @@ class GeminiClient:
     def __init__(self):
         load_dotenv()
 
-        api_key = os.getenv("GEMINI_API_KEY")
+        api_key = os.getenv("GOOGLE_API_KEY")  # ✅ consistent with .env
         if not api_key:
-            raise ValueError("GEMINI_API_KEY not found in environment variables.")
+            raise ValueError("GOOGLE_API_KEY not found in environment variables.")
 
-        # Force stable API version
+        # Initialize client
         self.client = genai.Client(
             api_key=api_key,
             http_options={"api_version": "v1"}
         )
 
     def generate_response(self, prompt: str, history: list):
+        """
+        Generate response from Gemini
+        """
 
-        try:
-            response = self.client.models.generate_content(
-                model="models/gemini-2.5-flash",
-                contents=prompt
-            )
+        # Combine history + prompt (better context)
+        full_prompt = ""
 
-            return response.text
+        for msg in history:
+            role = msg["role"]
+            text = msg["parts"][0]
 
-        except Exception as e:
-            return f"Error communicating with Gemini API: {str(e)}"
+            if role == "user":
+                full_prompt += f"User: {text}\n"
+            else:
+                full_prompt += f"Assistant: {text}\n"
+
+        full_prompt += f"User: {prompt}\nAssistant:"
+
+        response = self.client.models.generate_content(
+            model="models/gemini-2.5-flash",
+            contents=full_prompt
+        )
+
+        return response.text
